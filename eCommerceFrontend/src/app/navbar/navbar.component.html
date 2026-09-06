@@ -1,0 +1,67 @@
+
+      <div class="banner_bg_main">
+       <div class="container">
+          <div class="row">
+             <div class="col-sm-12">
+                <div class="logo"><a href="index.html"><img src="assets/img/Ecommerce_logo.png"></a></div>
+             </div>
+          </div>
+       </div>
+       <div class="container">
+          <div class="containt_main">
+               <div class="site-nav"> 
+                   <div class="site-navigation">
+                       <ul class="d-lg-inline-block site-menu">
+                           <li class="has-children">
+                               <a href="#">Categories</a>
+                               <ul class="dropdown">
+                                 <div *ngFor="let singleProductCategory of productCategories" >
+                                     <li *ngIf="singleProductCategory.productsubcategories.length==1">
+                                       <a routerLink="category/{{singleProductCategory.id}}" class="dropdown-item">{{singleProductCategory.categoryName}}</a>
+                                    </li>
+                                    <li *ngIf="singleProductCategory.productsubcategories.length>1" class="has-children">
+                                       <a routerLink="category/{{singleProductCategory.id}}" class="dropdown-item" href="#">{{singleProductCategory.categoryName}}</a>
+                                       <ul class="dropdown">
+                                          <li *ngFor="let singleProductSubcategory of singleProductCategory.productsubcategories">
+                                             <a routerLink="subcategory/{{singleProductSubcategory.id}}" class="dropdown-item" href="#">
+                                                {{singleProductSubcategory.categoryName}}
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </div>
+                               </ul>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+             <div class="main">
+                <div class="input-group">
+                   <input #myInput type="text" class="form-control" placeholder="Search this blog" (keyup.enter)="doSearch(myInput.value)">
+                      <button (click)="doSearch(myInput.value)" class="btn" type="button">
+                      <i class="fa fa-search"></i>
+                      </button>
+                </div>
+             </div>
+             <div class="header_box">
+               <div class="login_menu">
+                  <ul>
+                     <app-cart-price></app-cart-price>
+                     <li><a *ngIf="isAuthenticated" routerLink="/history" class="security-btn">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        History</a>
+                     </li>
+                     <li><a *ngIf="!isAuthenticated" routerLink="/login" class="security-btn">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Login</a>
+                     </li>
+                     <li><a *ngIf="isAuthenticated" (click)="logout()" class="security-btn">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Logout</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+          </div>
+       </div>
+     </div>
